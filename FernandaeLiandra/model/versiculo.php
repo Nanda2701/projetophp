@@ -28,27 +28,27 @@ class versiculo {
         return $stmt->fetch();
     }
 
-    // Inserir nova notícia
-    public function create($usuario_id, $titulo, $conteudo) {
-        $query = "INSERT INTO " . $this->table . " (usuario_id, titulo, conteudo) VALUES (:usuario_id, :capitulo, :conteudo)";
+    // Inserir novo versiculo
+    public function create($usuario_id, $versiculo, $foto) {
+        $query = "INSERT INTO " . $this->table . " (usuario_id, versiculo, foto) VALUES (:usuario_id, :versiculo, :foto)";
         $stmt = $this->conn->prepare($query);
         $stmt->bindParam(':usuario_id', $usuario_id);
-        $stmt->bindParam(':titulo', $titulo);
-        $stmt->bindParam(':conteudo', $conteudo);
+        $stmt->bindParam(':versiculo', $versiculo);
+        $stmt->bindParam(':foto', $foto);
         return $stmt->execute();
     }
 
-    // Atualizar notícia
-    public function update($id, $titulo, $conteudo) {
-        $query = "UPDATE " . $this->table . " SET titulo = :titulo, conteudo = :conteudo WHERE id = :id";
+    // Atualizar versículo
+    public function update($usuario_id, $versiculo, $foto) {
+        $query = "UPDATE " . $this->table . " SET versiculo = :versiculo, foto = :foto WHERE usuario_id = :usuario_id";
         $stmt = $this->conn->prepare($query);
-        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
-        $stmt->bindParam(':titulo', $titulo);
-        $stmt->bindParam(':conteudo', $conteudo);
+        $stmt->bindParam(':usuario_id', $usuario_id);
+        $stmt->bindParam(':versiculo', $versiculo);
+        $stmt->bindParam(':foto', $foto);
         return $stmt->execute();
     }
 
-    // Apagar notícia
+    // Apagar versículo
     public function delete($id) {
         $query = "DELETE FROM " . $this->table . " WHERE id = :id";
         $stmt = $this->conn->prepare($query);
